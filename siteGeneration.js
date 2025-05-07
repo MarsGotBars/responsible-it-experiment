@@ -56,17 +56,31 @@ for (const page of pages) {
       document.documentElement.classList.add("js");
     </script>
 
-    <link rel="stylesheet" href="../styles/tokens--fonts.css" />
-    <link rel="stylesheet" href="../styles/tokens--colors.css" />
-    <link rel="stylesheet" href="../styles/general.css" />
-    <link rel="stylesheet" href="../styles/general--controls.css" />
-    <link rel="stylesheet" href="../styles/general--text.css" />
-    <link rel="stylesheet" href="../styles/landmark--header.css" />
-    <link rel="stylesheet" href="../styles/landmark--header__accessibility.css" />
-    <link rel="stylesheet" href="../styles/landmark--triangles.css" />
-    <link rel="stylesheet" href="../styles/landmark--main.css" />
+    ${isHomePage 
+        ? `
+          <link rel="stylesheet" href="styles/tokens--fonts.css" />
+          <link rel="stylesheet" href="styles/tokens--colors.css" />
+          <link rel="stylesheet" href="styles/general.css" />
+          <link rel="stylesheet" href="styles/general--controls.css" />
+          <link rel="stylesheet" href="styles/general--text.css" />
+          <link rel="stylesheet" href="styles/landmark--header.css" />
+          <link rel="stylesheet" href="styles/landmark--header__accessibility.css" />
+          <link rel="stylesheet" href="styles/landmark--triangles.css" />
+          <link rel="stylesheet" href="styles/landmark--main.css" />
+        ` 
+        : `
+          <link rel="stylesheet" href="../styles/tokens--fonts.css" />
+          <link rel="stylesheet" href="../styles/tokens--colors.css" />
+          <link rel="stylesheet" href="../styles/general.css" />
+          <link rel="stylesheet" href="../styles/general--controls.css" />
+          <link rel="stylesheet" href="../styles/general--text.css" />
+          <link rel="stylesheet" href="../styles/landmark--header.css" />
+          <link rel="stylesheet" href="../styles/landmark--header__accessibility.css" />
+          <link rel="stylesheet" href="../styles/landmark--triangles.css" />
+          <link rel="stylesheet" href="../styles/landmark--main.css" />
+        `}
 
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="${isHomePage ? '' : '../'}images/favicon.ico" />
     <script type="module" src="scripts/fetch.js"></script>
   </head>
   <body>
@@ -78,7 +92,7 @@ for (const page of pages) {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 246.207 29.653"
           >
-            <use xlink:href="../images/logo-nl.svg#logo"></use>
+            <use xlink:href="${isHomePage ? '' : '../'}images/logo-nl.svg#logo"></use>
           </svg>
         </a>
 
@@ -228,10 +242,10 @@ for (const page of pages) {
       ${page.content.rendered}
     </main>
 
-    <script src="../scripts/general--helpers.js"></script>
-    <script defer src="../scripts/landmark--header.js"></script>
-    <script defer src="../scripts/landmark--header__accessibility.js"></script>
-    <script defer src="../scripts/landmark--triangles.js"></script>
+    <script src="${isHomePage ? '' : '../'}scripts/general--helpers.js"></script>
+    <script defer src="${isHomePage ? '' : '../'}scripts/landmark--header.js"></script>
+    <script defer src="${isHomePage ? '' : '../'}scripts/landmark--header__accessibility.js"></script>
+    <script defer src="${isHomePage ? '' : '../'}scripts/landmark--triangles.js"></script>
   </body>
 </html>
   `.trim();
