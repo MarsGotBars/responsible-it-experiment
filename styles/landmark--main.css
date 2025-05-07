@@ -1,8 +1,15 @@
+/* needs works */
 main {
   grid-column:full;
-
+  
   display:grid;
   grid-template-columns:inherit;
+  /* grid-column: 1 / -1;
+  margin: 0 auto; */
+}
+
+main > * {
+  grid-column: 1 / -1;
 }
 
 .section--content {
