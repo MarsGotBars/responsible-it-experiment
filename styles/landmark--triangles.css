@@ -65,7 +65,7 @@
   @media (height > 24em) {
     .triangles {
       position:sticky;
-      top:8.125em;
+      top:8em;
     }
 
     :root[data-setting--no-images="false"] .triangles {
