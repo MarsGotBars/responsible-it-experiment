@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Static Site Generator for WP content",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "node siteGeneration.js"
   },
