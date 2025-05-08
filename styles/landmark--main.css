@@ -9,7 +9,20 @@ main {
 }
 
 main > * {
-  grid-column: 1 / -1;
+  grid-column: full;
+}
+
+main > * > * {
+  grid-column: small;
+}
+
+main figure{
+  margin: 0;
+}
+
+main figure img{
+  height: 100%;
+  width: 100%;
 }
 
 .section--content {
