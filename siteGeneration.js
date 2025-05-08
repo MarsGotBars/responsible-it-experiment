@@ -1,48 +1,44 @@
-import { log } from "console";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
 // Config
-const WP_URL = "http://responsible-it.local/wp-json/wp/v2/pages";
+// example: http://your-link/wp-json/wp/v2/pages
+const WP_URL = "your wordpress website title here";
 
-// For __dirname in ES modules
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+let pages;
+try {
+  // Fetch pages from WordPress
+  const response = await fetch(WP_URL);
+  pages = await response.json();
 
-// Fetch pages from WordPress
-const response = await fetch(WP_URL);
-const pages = await response.json();
+  // Generate the navigation with all pages (including the homepage)
+  const navLinks = pages
+    .filter((page) => page.slug !== "home" && page.slug !== "home-page")
+    .map((page) => {
+      return `<li><a href="/${page.slug}/">${page.title.rendered}</a></li>`;
+    })
+    .join("\n");
+  try {
+    for (const page of pages) {
+      // Check if the page is the homepage (usually the page with the 'slug' == 'home' or some other special property)
+      const isHomePage =
+        page.slug === "home" ||
+        page.slug === "home-page" ||
+        page.slug === "index";
 
-// Filter out homepage (based on slug or ID, adjust if needed)
-const filteredPages = pages.filter(
-  (page) => page.slug !== "home-page" && page.slug !== "index"
-);
+      // If it's the homepage, write it to the root as index.html
+      const filePath = isHomePage
+        ? path.join(__dirname, "index.html") // Root index.html for homepage
+        : path.join(__dirname, page.slug, "index.html"); // Other pages in respective folders
 
-// Generate the navigation with all pages (including the homepage)
-const navLinks = pages.filter(page => page.slug !== "home" && page.slug !== "home-page").map(page => {
-    return `<li><a href="/${page.slug}/">${page.title.rendered}</a></li>`;
-  }).join("\n");
-  
+      // Create the page directory (if necessary)
+      if (!isHomePage) {
+        await fs.mkdir(path.dirname(filePath), { recursive: true });
+      }
 
-console.log(`Generating ${filteredPages.length} pages...\n`);
-
-for (const page of pages) {
-    console.log(page.slug);
-    
-  // Check if the page is the homepage (usually the page with the 'slug' == 'home' or some other special property)
-  const isHomePage = page.slug === "home" || page.slug === "home-page" || page.slug === "index";
-    
-  // If it's the homepage, write it to the root as index.html
-  const filePath = isHomePage
-    ? path.join(__dirname, "index.html") // Root index.html for homepage
-    : path.join(__dirname, page.slug, "index.html"); // Other pages in respective folders
-
-  // Create the page directory (if necessary)
-  if (!isHomePage) {
-    await fs.mkdir(path.dirname(filePath), { recursive: true });
-  }
-
-  const html = `
+      const html = `
 <!DOCTYPE html>
 <html lang="nl">
   <head>
@@ -56,7 +52,8 @@ for (const page of pages) {
       document.documentElement.classList.add("js");
     </script>
 
-    ${isHomePage 
+    ${
+      isHomePage
         ? `
           <link rel="stylesheet" href="styles/tokens--fonts.css" />
           <link rel="stylesheet" href="styles/tokens--colors.css" />
@@ -67,7 +64,7 @@ for (const page of pages) {
           <link rel="stylesheet" href="styles/landmark--header__accessibility.css" />
           <link rel="stylesheet" href="styles/landmark--triangles.css" />
           <link rel="stylesheet" href="styles/landmark--main.css" />
-        ` 
+        `
         : `
           <link rel="stylesheet" href="../styles/tokens--fonts.css" />
           <link rel="stylesheet" href="../styles/tokens--colors.css" />
@@ -78,10 +75,12 @@ for (const page of pages) {
           <link rel="stylesheet" href="../styles/landmark--header__accessibility.css" />
           <link rel="stylesheet" href="../styles/landmark--triangles.css" />
           <link rel="stylesheet" href="../styles/landmark--main.css" />
-        `}
+        `
+    }
 
-    <link rel="icon" type="image/x-icon" href="${isHomePage ? '' : '../'}images/favicon.ico" />
-    <script type="module" src="scripts/fetch.js"></script>
+    <link rel="icon" type="image/x-icon" href="${
+      isHomePage ? "" : "../"
+    }images/favicon.ico" />
   </head>
   <body>
     <header class="header--body">
@@ -92,7 +91,9 @@ for (const page of pages) {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 246.207 29.653"
           >
-            <use xlink:href="${isHomePage ? '' : '../'}images/logo-nl.svg#logo"></use>
+            <use xlink:href="${
+              isHomePage ? "" : "../"
+            }images/logo-nl.svg#logo"></use>
           </svg>
         </a>
 
@@ -100,13 +101,14 @@ for (const page of pages) {
 
         <button class="button--disclosure button--menu" hidden>Menu</button>
 
-        <nav class="nav--main">
+        <nav class="nav--main notranslate">
           <ul>
             <li><a href="/">Responsible IT</a></li>
-            ${navLinks} <!-- Dynamic list of pages -->
+            ${navLinks}
           </ul>
         </nav>
-
+        <!-- Hier worden de translation vlaggetjes geplaatst -->
+        <div class="gtranslate_wrapper flags"></div>
         <details class="details--accessibility">
           <summary>Toeganke&shy;lijkheid</summary>
 
@@ -122,11 +124,11 @@ for (const page of pages) {
                   value="min"
                   hidden
                 >
-                  <span aria-hidden="true"> A<span>A</span> </span>
+                  <span class="notranslate" aria-hidden="true"> A<span>A</span> </span>
                   Kleiner
                 </button>
 
-                <select name="setting--fontsize" class="setting--fontsize">
+                <select name="setting--fontsize" class="setting--fontsize notranslate">
                   <option value="-.2">-20%</option>
                   <option value="-.1">-10%</option>
                   <hr />
@@ -146,7 +148,7 @@ for (const page of pages) {
                   value="plus"
                   hidden
                 >
-                  <span aria-hidden="true"> <span>A</span>A </span>
+                  <span class="notranslate" aria-hidden="true"> <span>A</span>A </span>
                   Groter
                 </button>
               </fieldset>
@@ -239,21 +241,40 @@ for (const page of pages) {
     <div class="triangles"></div>
 
     <main>
-      ${page.content.rendered}
+        <section class="section--content">
+            ${page.content.rendered}
+        </section>
     </main>
 
-    <script src="${isHomePage ? '' : '../'}scripts/general--helpers.js"></script>
-    <script defer src="${isHomePage ? '' : '../'}scripts/landmark--header.js"></script>
-    <script defer src="${isHomePage ? '' : '../'}scripts/landmark--header__accessibility.js"></script>
-    <script defer src="${isHomePage ? '' : '../'}scripts/landmark--triangles.js"></script>
+    <script src="${
+      isHomePage ? "" : "../"
+    }scripts/general--helpers.js"></script>
+    <script defer src="${
+      isHomePage ? "" : "../"
+    }scripts/landmark--header.js"></script>
+    <script defer src="${
+      isHomePage ? "" : "../"
+    }scripts/landmark--header__accessibility.js"></script>
+    <script defer src="${
+      isHomePage ? "" : "../"
+    }scripts/landmark--triangles.js"></script>
+    <script>window.gtranslateSettings = {"default_language":"nl","languages":["nl","en"],"wrapper_selector":".gtranslate_wrapper"}</script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/fc.js" defer></script>
   </body>
 </html>
   `.trim();
 
-  // Write the generated HTML to the corresponding page directory
-  await fs.writeFile(filePath, html, "utf8");
-  console.log(`✓ /${page.slug}/`);
+      // Write the generated HTML to the corresponding page directory
+      await fs.writeFile(filePath, html, "utf8");
+      if(!page.title.rendered.toLowerCase().includes("home") && !page.title.rendered.toLowerCase().includes("index")){
+      console.log(`generated: /${page.title.rendered}/`);
+      }
+    }
+  } catch (error) {
+    console.log(`Ran into error whilst generating: ${error}`);
+  }
+} catch (error) {
+  console.log("Check if you filled in the right 'WP_URL' on line 6");
 }
-
 // Optional: inject WP data into existing index.html if needed
 // You can extend this section as needed to add featured pages or metadata
