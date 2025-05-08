@@ -2,11 +2,11 @@
 /* FORM */
 /********/
 
-.js .details--accessibility {
+.js .details--accessibility, .js .flags {
   --js:none;
 }
 
-.details--accessibility {
+.details--accessibility, .flags {
   position: relative;
 
   display:var(--js, flex);
@@ -16,7 +16,7 @@
   font-weight:600;
 }
 
-.is-open .details--accessibility {
+.is-open .details--accessibility, .is-open .flags {
   display:flex;
 }
 
@@ -56,6 +56,10 @@ fieldset:has([type="checkbox"]) {
   justify-items:start;
 }
 
+fieldset label{
+  text-wrap: nowrap;
+}
+
 /* legend */
 .details--accessibility legend {
   padding:0 .33em;
@@ -87,6 +91,10 @@ fieldset:has([type="checkbox"]) {
   appearance:none;
   border:var(--border-medium);
   border-radius:.25em;
+}
+
+.setting--fontsize--button > * {
+  pointer-events: none;
 }
 
 
@@ -342,7 +350,7 @@ label:has( input:focus-visible ) input {
 /******************/
 
 @container --container--body (width > 43em) {
-  .details--accessibility {
+  .details--accessibility, .flags {
     display:flex; /* always visible */
 
     align-items:end;
