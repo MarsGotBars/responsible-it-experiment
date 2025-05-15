@@ -3,7 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 // example: http://your-link/wp-json/wp/v2/pages
-const WP_URL = "https://responsible-it.nl/wp-json/wp/v2/pages";
+const WP_URL = "https://AIAIAI.art/wp-json/wp/v2/pages";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 let pages;
