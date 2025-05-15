@@ -2,15 +2,12 @@
 /* FORM */
 /********/
 
-.js .details--accessibility, .js .flags {
-  --js:none;
-}
-
 .details--accessibility, .flags {
   position: relative;
-
-  display:var(--js, flex);
-  flex-direction:column;
+  justify-content: space-around;
+  display:flex;
+  width: 100%;
+  flex-direction:row;
   align-items:start;
 
   font-weight:600;
@@ -45,7 +42,6 @@
   border:none;
   padding:0;
   margin:.33em 0 0;
-
   display:flex;
   flex-wrap:wrap;
   align-items:center;
@@ -74,10 +70,6 @@ fieldset label{
 /*********************/
 /* FONTSIZE - BUTTON */
 /*********************/
-
-.js .setting--fontsize--button {
-  --js:flex;
-}
 
 .setting--fontsize--button {
   margin:.33em;
@@ -197,10 +189,6 @@ fieldset label{
 /*********************/
 /* FONTSIZE -SELECT  */
 /*********************/
-
-.js .setting--fontsize {
-  --js:none;
-}
 
 .setting--fontsize {
   display:var(--js, block);
@@ -333,10 +321,6 @@ label:has( input:focus-visible ) input {
 /* SUBMIT BUTTON */
 /*****************/
 
-.js .details--accessibility [type="submit"] {
-  --js:none;
-}
-
 .details--accessibility [type="submit"] {
   display:var(--js, block);
 }
@@ -350,17 +334,11 @@ label:has( input:focus-visible ) input {
 /******************/
 
 @container --container--body (width > 43em) {
-  .details--accessibility, .flags {
-    display:flex; /* always visible */
-
-    align-items:end;
-  }
-
   .details--accessibility__block {
     position: absolute;
-    top:calc(100%);
-    right:0;
-    z-index: 2;
+    bottom: 0;
+    left:calc(100% + .75rem);
+    z-index: 5;
     box-shadow: var(--shadow);
   }
 

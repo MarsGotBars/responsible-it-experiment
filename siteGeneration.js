@@ -1,7 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
-
+import * as cheerio from "cheerio";
+// Config
 // example: http://your-link/wp-json/wp/v2/pages
 const WP_URL = "https://AIAIAI.art/wp-json/wp/v2/pages";
 
@@ -21,6 +22,7 @@ try {
     .join("\n");
   try {
     for (const page of pages) {
+      const cleanContent = cleanWordPressContent(page.content.rendered);
       // Check if the page is the homepage (usually the page with the 'slug' == 'home' or some other special property)
       const isHomePage =
         page.slug === "home" ||
@@ -38,75 +40,63 @@ try {
       }
 
       const html = `
-<!DOCTYPE html>
-<html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Lectoraat Responsible IT" />
+  <!DOCTYPE html>
+  <html lang="nl">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description" content="Lectoraat Responsible IT" />
 
-    <title>${page.title.rendered} - Lectoraat Responsible IT</title>
+      <title>${page.title.rendered} - Lectoraat Responsible IT</title>
 
-    <script>
-      document.documentElement.classList.add("js");
-    </script>
+      <script>
+        document.documentElement.classList.add("js");
+      </script>
+      <!-- Voor het toevoegen van een script/style raad ik aan de isHomePage check uit te voeren zoals hieronder -->
+      ${
+        isHomePage
+          ? `
+            <link rel="stylesheet" href="styles/tokens--fonts.css" />
+            <link rel="stylesheet" href="styles/tokens--colors.css" />
+            <link rel="stylesheet" href="styles/general.css" />
+            <link rel="stylesheet" href="styles/general--controls.css" />
+            <link rel="stylesheet" href="styles/general--text.css" />
+            <link rel="stylesheet" href="styles/landmark--header.css" />
+            <link rel="stylesheet" href="styles/landmark--header__accessibility.css" />
+            <link rel="stylesheet" href="styles/landmark--triangles.css" />
+            <link rel="stylesheet" href="styles/landmark--main.css" />
+          `
+          : `
+            <link rel="stylesheet" href="../styles/tokens--fonts.css" />
+            <link rel="stylesheet" href="../styles/tokens--colors.css" />
+            <link rel="stylesheet" href="../styles/general.css" />
+            <link rel="stylesheet" href="../styles/general--controls.css" />
+            <link rel="stylesheet" href="../styles/general--text.css" />
+            <link rel="stylesheet" href="../styles/landmark--header.css" />
+            <link rel="stylesheet" href="../styles/landmark--header__accessibility.css" />
+            <link rel="stylesheet" href="../styles/landmark--triangles.css" />
+            <link rel="stylesheet" href="../styles/landmark--main.css" />
+          `
+      }
 
-    ${
-      isHomePage
-        ? `
-          <link rel="stylesheet" href="styles/tokens--fonts.css" />
-          <link rel="stylesheet" href="styles/tokens--colors.css" />
-          <link rel="stylesheet" href="styles/general.css" />
-          <link rel="stylesheet" href="styles/general--controls.css" />
-          <link rel="stylesheet" href="styles/general--text.css" />
-          <link rel="stylesheet" href="styles/landmark--header.css" />
-          <link rel="stylesheet" href="styles/landmark--header__accessibility.css" />
-          <link rel="stylesheet" href="styles/landmark--triangles.css" />
-          <link rel="stylesheet" href="styles/landmark--main.css" />
-        `
-        : `
-          <link rel="stylesheet" href="../styles/tokens--fonts.css" />
-          <link rel="stylesheet" href="../styles/tokens--colors.css" />
-          <link rel="stylesheet" href="../styles/general.css" />
-          <link rel="stylesheet" href="../styles/general--controls.css" />
-          <link rel="stylesheet" href="../styles/general--text.css" />
-          <link rel="stylesheet" href="../styles/landmark--header.css" />
-          <link rel="stylesheet" href="../styles/landmark--header__accessibility.css" />
-          <link rel="stylesheet" href="../styles/landmark--triangles.css" />
-          <link rel="stylesheet" href="../styles/landmark--main.css" />
-        `
-    }
-
-    <link rel="icon" type="image/x-icon" href="${
-      isHomePage ? "" : "../"
-    }images/favicon.ico" />
-  </head>
-  <body>
+      <link rel="icon" type="image/x-icon" href="${
+        isHomePage ? "" : "../"
+      }images/favicon.ico" />
+    </head>
+    <body>
     <header class="header--body">
       <div class="header--body__block">
-        <a href="index.html" class="link--logo" aria-label="naar de homepage">
-          <svg
-            class="logo--hva-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 246.207 29.653"
-          >
-            <use xlink:href="${
-              isHomePage ? "" : "../"
-            }images/logo-nl.svg#logo"></use>
-          </svg>
-        </a>
-
-        <a href="#main" class="visually-hidden link--skip">direct naar hoofdinhoud</a>
-
-        <button class="button--disclosure button--menu" hidden>Menu</button>
+        <a href="#main" class="visually-hidden link--skip"
+          >direct naar hoofdinhoud</a
+        >
 
         <nav class="nav--main notranslate">
           <ul>
             <li><a href="/">Responsible IT</a></li>
-            ${navLinks}
+              ${navLinks}
           </ul>
         </nav>
-        <!-- Hier worden de translation vlaggetjes geplaatst -->
+        <!-- Hier worden de translation vlaggetjes geplaatst, pas deze zelf aan naar wens -->
         <div class="gtranslate_wrapper flags"></div>
         <details class="details--accessibility">
           <summary>Toeganke&shy;lijkheid</summary>
@@ -123,11 +113,16 @@ try {
                   value="min"
                   hidden
                 >
-                  <span class="notranslate" aria-hidden="true"> A<span>A</span> </span>
+                  <span class="notranslate" aria-hidden="true">
+                    A<span>A</span>
+                  </span>
                   Kleiner
                 </button>
 
-                <select name="setting--fontsize" class="setting--fontsize notranslate">
+                <select
+                  name="setting--fontsize"
+                  class="setting--fontsize notranslate"
+                >
                   <option value="-.2">-20%</option>
                   <option value="-.1">-10%</option>
                   <hr />
@@ -147,7 +142,9 @@ try {
                   value="plus"
                   hidden
                 >
-                  <span class="notranslate" aria-hidden="true"> <span>A</span>A </span>
+                  <span class="notranslate" aria-hidden="true">
+                    <span>A</span>A
+                  </span>
                   Groter
                 </button>
               </fieldset>
@@ -236,37 +233,47 @@ try {
         </details>
       </div>
     </header>
-
-    <div class="triangles"></div>
-
     <main>
-        <section class="section--content">
-            ${page.content.rendered}
-        </section>
+      <a href="/" class="link--logo" aria-label="naar de homepage">
+        <svg
+          class="logo--hva-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 246.207 29.653"
+        >
+          <use xlink:href="${isHomePage ? "" : "../"}
+images/logo-nl.svg#logo"></use>
+        </svg>
+      </a>
+    <!-- Hier staat alle content vanuit wordpress -->
+      ${cleanContent}
     </main>
 
-    <script src="${
-      isHomePage ? "" : "../"
-    }scripts/general--helpers.js"></script>
-    <script defer src="${
-      isHomePage ? "" : "../"
-    }scripts/landmark--header.js"></script>
-    <script defer src="${
-      isHomePage ? "" : "../"
-    }scripts/landmark--header__accessibility.js"></script>
-    <script defer src="${
-      isHomePage ? "" : "../"
-    }scripts/landmark--triangles.js"></script>
-    <script>window.gtranslateSettings = {"default_language":"nl","languages":["nl","en"],"wrapper_selector":".gtranslate_wrapper"}</script>
-    <script src="https://cdn.gtranslate.net/widgets/latest/fc.js" defer></script>
-  </body>
-</html>
+      
+      <script src="${
+        isHomePage ? "" : "../"
+      }scripts/general--helpers.js"></script>
+      <script defer src="${
+        isHomePage ? "" : "../"
+      }scripts/landmark--header.js"></script>
+      <script defer src="${
+        isHomePage ? "" : "../"
+      }scripts/landmark--header__accessibility.js"></script>
+      <script defer src="${
+        isHomePage ? "" : "../"
+      }scripts/landmark--triangles.js"></script>
+      <script>window.gtranslateSettings = {"default_language":"nl","languages":["nl","en"],"wrapper_selector":".gtranslate_wrapper"}</script>
+      <script src="https://cdn.gtranslate.net/widgets/latest/fc.js" defer></script>
+    </body>
+  </html>
   `.trim();
 
       // Write the generated HTML to the corresponding page directory
       await fs.writeFile(filePath, html, "utf8");
-      if(!page.title.rendered.toLowerCase().includes("home") && !page.title.rendered.toLowerCase().includes("index")){
-      console.log(`generated: /${page.title.rendered}/`);
+      if (
+        !page.title.rendered.toLowerCase().includes("home") &&
+        !page.title.rendered.toLowerCase().includes("index")
+      ) {
+        console.log(`generated: /${page.title.rendered}/`);
       }
     }
   } catch (error) {
@@ -276,5 +283,26 @@ try {
   console.log(error);
   console.log("Check if you filled in the right 'WP_URL' on line 6");
 }
-// Optional: inject WP data into existing index.html if needed
-// You can extend this section as needed to add featured pages or metadata
+
+/**
+ * Funcite die alle attributen van de wordpress html tags weghaalt
+ * @param {string} content - De content vanuit wordpress
+ * @returns {string} $.html() - De nette content
+ */
+function cleanWordPressContent(content) {
+  const $ = cheerio.load(content);
+
+  $("*").each(function() {
+    const element = $(this);
+    let attributesToKeep = ["href", "width", "height", "src", "allowfullscreen"];
+    
+    // Remove attributes not in the keep list
+    Object.keys(this.attribs || {}).forEach((attr) => {
+      if (!attributesToKeep.includes(attr)) {
+        element.removeAttr(attr);
+      }
+    });
+  });
+
+  return $.html();
+}

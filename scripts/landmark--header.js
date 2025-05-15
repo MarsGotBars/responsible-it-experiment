@@ -3,17 +3,7 @@
 ///////////////////////
 
 function iniMenu() {
-  const buttonMenu = document.querySelector(".button--menu");
-  const header = document.querySelector("body > header");
-
-
-  // menu button
-  function handleButtonMenuClick() {
-    header.classList.toggle("is-open");
-  }
-
-  buttonMenu.onclick = handleButtonMenuClick;
-
+  const header = document.querySelector("body header");
 
   // menu escape
   function handleKeyDownMenu(e) {
