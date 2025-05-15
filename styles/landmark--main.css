@@ -29,12 +29,6 @@ main {
   flex-direction: column;
 }
 
-/* select title (in normal cases) */
-main > *:nth-child(2){
-  background: var(--bg);
-  position: sticky;
-  top: calc(var(--logo-height) + (var(--logo-padding-y) * 2));
-}
 main > * {
   grid-column: full;
 }
@@ -46,11 +40,6 @@ main > * > * {
 
 main figure {
   margin: 0;
-}
-
-main figure img {
-  height: 100%;
-  width: 100%;
 }
 
 .section--content {
