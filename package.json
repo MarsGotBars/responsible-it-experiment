@@ -8,9 +8,12 @@
     "build": "node siteGeneration.js"
   },
   "dependencies": {
-    "node": "^24.0.0",
     "fs": "0.0.1-security",
+    "node": "^24.0.0",
     "path": "^0.12.7",
     "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0"
   }
 }
