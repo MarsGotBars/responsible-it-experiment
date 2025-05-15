@@ -2,9 +2,8 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Config
 // example: http://your-link/wp-json/wp/v2/pages
-const WP_URL = "your wordpress website title here";
+const WP_URL = "https://responsible-it.nl/wp-json/wp/v2/pages";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 let pages;
@@ -274,6 +273,7 @@ try {
     console.log(`Ran into error whilst generating: ${error}`);
   }
 } catch (error) {
+  console.log(error);
   console.log("Check if you filled in the right 'WP_URL' on line 6");
 }
 // Optional: inject WP data into existing index.html if needed
