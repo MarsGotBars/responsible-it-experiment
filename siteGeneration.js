@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import * as cheerio from "cheerio";
 // Config
 // example: http://your-link/wp-json/wp/v2/pages
-const WP_URL = "http://responsible-it.local/wp-json/wp/v2/pages";
+const WP_URL = "https://AIAIAI.art/wp-json/wp/v2/pages";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 let pages;
@@ -280,6 +280,7 @@ images/logo-nl.svg#logo"></use>
     console.log(`Ran into error whilst generating: ${error}`);
   }
 } catch (error) {
+  console.log(error);
   console.log("Check if you filled in the right 'WP_URL' on line 6");
 }
 
