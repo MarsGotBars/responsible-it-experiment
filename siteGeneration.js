@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
-
+import * as cheerio from "cheerio";
 // Config
 // example: http://your-link/wp-json/wp/v2/pages
 const WP_URL = "http://responsible-it.local/wp-json/wp/v2/pages";
@@ -22,6 +22,7 @@ try {
     .join("\n");
   try {
     for (const page of pages) {
+      const cleanContent = cleanWordPressContent(page.content.rendered);
       // Check if the page is the homepage (usually the page with the 'slug' == 'home' or some other special property)
       const isHomePage =
         page.slug === "home" ||
@@ -232,7 +233,6 @@ try {
         </details>
       </div>
     </header>
-    <!-- Hier staat alle content vanuit wordpress -->
     <main>
       <a href="/" class="link--logo" aria-label="naar de homepage">
         <svg
@@ -243,8 +243,9 @@ try {
           <use xlink:href="${isHomePage ? "" : "../"}
 images/logo-nl.svg#logo"></use>
         </svg>
-      </a>${page.content.rendered}
-
+      </a>
+    <!-- Hier staat alle content vanuit wordpress -->
+      ${cleanContent}
     </main>
 
       
@@ -280,4 +281,27 @@ images/logo-nl.svg#logo"></use>
   }
 } catch (error) {
   console.log("Check if you filled in the right 'WP_URL' on line 6");
+}
+
+/**
+ * Funcite die alle attributen van de wordpress html tags weghaalt
+ * @param {string} content - De content vanuit wordpress
+ * @returns {string} $.html() - De nette content
+ */
+function cleanWordPressContent(content) {
+  const $ = cheerio.load(content);
+
+  $("*").each(function() {
+    const element = $(this);
+    let attributesToKeep = ["href", "width", "height", "src", "allowfullscreen"];
+    
+    // Remove attributes not in the keep list
+    Object.keys(this.attribs || {}).forEach((attr) => {
+      if (!attributesToKeep.includes(attr)) {
+        element.removeAttr(attr);
+      }
+    });
+  });
+
+  return $.html();
 }
