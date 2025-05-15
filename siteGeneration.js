@@ -15,7 +15,7 @@ try {
 
   // Generate the navigation with all pages (including the homepage)
   const navLinks = pages
-    .filter((page) => page.slug !== "home" && page.slug !== "home-page")
+    .filter((page) => page.slug !== "home" && page.slug !== "home-page" && page.slug != "voorbeeld-pagina" && page.slug != "index")
     .map((page) => {
       return `<li><a href="/${page.slug}/">${page.title.rendered}</a></li>`;
     })
@@ -27,6 +27,7 @@ try {
       const isHomePage =
         page.slug === "home" ||
         page.slug === "home-page" ||
+        page.slug === "voorbeeld-pagina" ||
         page.slug === "index";
 
       // If it's the homepage, write it to the root as index.html
@@ -63,7 +64,6 @@ try {
             <link rel="stylesheet" href="styles/general--text.css" />
             <link rel="stylesheet" href="styles/landmark--header.css" />
             <link rel="stylesheet" href="styles/landmark--header__accessibility.css" />
-            <link rel="stylesheet" href="styles/landmark--triangles.css" />
             <link rel="stylesheet" href="styles/landmark--main.css" />
           `
           : `
@@ -74,7 +74,6 @@ try {
             <link rel="stylesheet" href="../styles/general--text.css" />
             <link rel="stylesheet" href="../styles/landmark--header.css" />
             <link rel="stylesheet" href="../styles/landmark--header__accessibility.css" />
-            <link rel="stylesheet" href="../styles/landmark--triangles.css" />
             <link rel="stylesheet" href="../styles/landmark--main.css" />
           `
       }
@@ -258,9 +257,6 @@ images/logo-nl.svg#logo"></use>
       <script defer src="${
         isHomePage ? "" : "../"
       }scripts/landmark--header__accessibility.js"></script>
-      <script defer src="${
-        isHomePage ? "" : "../"
-      }scripts/landmark--triangles.js"></script>
       <script>window.gtranslateSettings = {"default_language":"nl","languages":["nl","en"],"wrapper_selector":".gtranslate_wrapper"}</script>
       <script src="https://cdn.gtranslate.net/widgets/latest/fc.js" defer></script>
     </body>
@@ -273,7 +269,7 @@ images/logo-nl.svg#logo"></use>
         !page.title.rendered.toLowerCase().includes("home") &&
         !page.title.rendered.toLowerCase().includes("index")
       ) {
-        console.log(`generated: /${page.title.rendered}/`);
+        console.log(`generated: ${isHomePage ? "index" : `/${page.title.rendered}/`}`);
       }
     }
   } catch (error) {
