@@ -10,47 +10,35 @@
     <script>
       document.documentElement.classList.add("js");
     </script>
+    <!-- Voor het toevoegen van een script/style raad ik aan de isHomePage check uit te voeren zoals hieronder -->
 
-    
-          <link rel="stylesheet" href="styles/tokens--fonts.css" />
-          <link rel="stylesheet" href="styles/tokens--colors.css" />
-          <link rel="stylesheet" href="styles/general.css" />
-          <link rel="stylesheet" href="styles/general--controls.css" />
-          <link rel="stylesheet" href="styles/general--text.css" />
-          <link rel="stylesheet" href="styles/landmark--header.css" />
-          <link rel="stylesheet" href="styles/landmark--header__accessibility.css" />
-          <link rel="stylesheet" href="styles/landmark--triangles.css" />
-          <link rel="stylesheet" href="styles/landmark--main.css" />
-        
+    <link rel="stylesheet" href="styles/tokens--fonts.css" />
+    <link rel="stylesheet" href="styles/tokens--colors.css" />
+    <link rel="stylesheet" href="styles/general.css" />
+    <link rel="stylesheet" href="styles/general--controls.css" />
+    <link rel="stylesheet" href="styles/general--text.css" />
+    <link rel="stylesheet" href="styles/landmark--header.css" />
+    <link rel="stylesheet" href="styles/landmark--header__accessibility.css" />
+    <link rel="stylesheet" href="styles/landmark--main.css" />
 
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
   </head>
   <body>
     <header class="header--body">
       <div class="header--body__block">
-        <a href="index.html" class="link--logo" aria-label="naar de homepage">
-          <svg
-            class="logo--hva-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 246.207 29.653"
-          >
-            <use xlink:href="images/logo-nl.svg#logo"></use>
-          </svg>
-        </a>
-
-        <a href="#main" class="visually-hidden link--skip">direct naar hoofdinhoud</a>
-
-        <button class="button--disclosure button--menu" hidden>Menu</button>
+        <a href="#main" class="visually-hidden link--skip"
+          >direct naar hoofdinhoud</a
+        >
 
         <nav class="nav--main notranslate">
           <ul>
             <li><a href="/">Responsible IT</a></li>
             <li><a href="/qwertyui/">qwertyui</a></li>
-<li><a href="/test-page/">Test page</a></li>
-<li><a href="/sample-page/">Sample Page</a></li>
+            <li><a href="/test-page/">Test page</a></li>
+            <li><a href="/sample-page/">Sample Page</a></li>
           </ul>
         </nav>
-        <!-- Hier worden de translation vlaggetjes geplaatst -->
+        <!-- Hier worden de translation vlaggetjes geplaatst, pas deze zelf aan naar wens -->
         <div class="gtranslate_wrapper flags"></div>
         <details class="details--accessibility">
           <summary>Toeganke&shy;lijkheid</summary>
@@ -67,11 +55,16 @@
                   value="min"
                   hidden
                 >
-                  <span class="notranslate" aria-hidden="true"> A<span>A</span> </span>
+                  <span class="notranslate" aria-hidden="true">
+                    A<span>A</span>
+                  </span>
                   Kleiner
                 </button>
 
-                <select name="setting--fontsize" class="setting--fontsize notranslate">
+                <select
+                  name="setting--fontsize"
+                  class="setting--fontsize notranslate"
+                >
                   <option value="-.2">-20%</option>
                   <option value="-.1">-10%</option>
                   <hr />
@@ -91,7 +84,9 @@
                   value="plus"
                   hidden
                 >
-                  <span class="notranslate" aria-hidden="true"> <span>A</span>A </span>
+                  <span class="notranslate" aria-hidden="true">
+                    <span>A</span>A
+                  </span>
                   Groter
                 </button>
               </fieldset>
@@ -180,310 +175,32 @@
         </details>
       </div>
     </header>
-
-    <div class="triangles"></div>
-
+    <!-- Hier staat alle content vanuit wordpress -->
     <main>
-        <section class="section--content">
-            
-<div class="wp-block-group alignfull has-accent-background-color has-background is-layout-constrained wp-container-core-group-is-layout-669513ed wp-block-group-is-layout-constrained" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
-<div class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-is-layout-1da03c2a wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-vertically-aligned-stretch is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:50%">
-<div class="wp-block-group is-vertical is-content-justification-stretch is-layout-flex wp-container-core-group-is-layout-444d5ee8 wp-block-group-is-layout-flex" style="min-height:100%">
-<p class="has-heading-font-family has-x-large-font-size" style="line-height:1.2">Études offers comprehensive consulting, management, design, and research solutions. Every architectural endeavor is an opportunity to shape the future.</p>
-
-
-
-<div class="wp-block-group is-content-justification-left is-layout-constrained wp-container-core-group-is-layout-9fe8ed88 wp-block-group-is-layout-constrained">
-<p class="wp-container-content-0733e5d0">Leaving an indelible mark on the landscape of tomorrow.</p>
-
-
-
-<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">About us</a></div>
-</div>
-</div>
-</div>
-</div>
-
-
-
-<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:50%">
-<figure class="wp-block-image size-large is-style-rounded"><img decoding="async" src="http://responsible-it.local/wp-content/themes/twentytwentyfour/assets/images/museum.webp" alt="A ramp along a curved wall in the Kiasma Museu, Helsinki, Finland" style="aspect-ratio:3/4;object-fit:cover"/></figure>
-</div>
-</div>
-</div>
-
-
-
-<div class="wp-block-group alignfull has-base-background-color has-background is-layout-constrained wp-container-core-group-is-layout-d89aad35 wp-block-group-is-layout-constrained" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
-<div class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-is-layout-549b0c86 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-content-justification-left is-layout-constrained wp-container-core-column-is-layout-4f15e8fe wp-block-column-is-layout-constrained" style="flex-basis:40%">
-<p>The revitalized art gallery is set to redefine cultural landscape.</p>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-container-core-column-is-layout-119bc444 wp-block-column-is-layout-flow" style="flex-basis:60%">
-<p class="has-heading-font-family has-x-large-font-size" style="line-height:1.2">With meticulous attention to detail and a commitment to excellence, we create spaces that inspire, elevate, and enrich the lives of those who inhabit them.</p>
-
-
-
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-87beb0d0 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<p class="wp-container-content-9cfa9a5a">The revitalized Art Gallery is set to redefine the cultural landscape of Toronto, serving as a nexus of artistic expression, community engagement, and architectural marvel. The expansion and renovation project pay homage to the Art Gallery&#8217;s rich history while embracing the future, ensuring that the gallery remains a beacon of inspiration.</p>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-<p>The revitalized Art Gallery is set to redefine the cultural landscape of Toronto, serving as a nexus of artistic expression, community engagement, and architectural marvel. The expansion and renovation project pay homage to the Art Gallery&#8217;s rich history while embracing the future, ensuring that the gallery remains a beacon of inspiration.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-
-<div class="wp-block-group alignfull has-accent-5-background-color has-background is-layout-constrained wp-container-core-group-is-layout-d89aad35 wp-block-group-is-layout-constrained" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
-<div class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-is-layout-1da03c2a wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:60%">
-<figure class="wp-block-image size-full is-style-rounded wp-duotone-varpresetduotoneduotone-1-3"><img decoding="async" src="http://responsible-it.local/wp-content/themes/twentytwentyfour/assets/images/abstract-geometric-art.webp" alt="White abstract geometric artwork from Dresden, Germany" style="aspect-ratio:4/3;object-fit:cover"/></figure>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:40%">
-<h2 class="wp-block-heading">Guiding your business through the project</h2>
-
-
-
-<p>Experience the fusion of imagination and expertise with Études—the catalyst for architectural transformations that enrich the world around us.</p>
-
-
-
-<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Our services</a></div>
-</div>
-</div>
-</div>
-</div>
-
-
-
-<div class="wp-block-group alignfull is-layout-constrained wp-container-core-group-is-layout-669513ed wp-block-group-is-layout-constrained" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
-<div class="wp-block-group is-vertical is-content-justification-center is-layout-flex wp-container-core-group-is-layout-ce155fab wp-block-group-is-layout-flex">
-<h2 class="wp-block-heading has-text-align-center has-xx-large-font-size">Meet our team</h2>
-
-
-
-<p class="has-text-align-center">Our comprehensive suite of professionals caters to a diverse team, ranging from seasoned architects to renowned engineers.</p>
-</div>
-
-
-
-<div style="height:var(--wp--preset--spacing--30)" aria-hidden="true" class="wp-block-spacer"></div>
-
-
-
-<div class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-is-layout-4935966c wp-block-columns-is-layout-flex" style="padding-right:0;padding-left:0">
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-
-
-<div class="wp-block-group is-vertical is-content-justification-center is-nowrap is-layout-flex wp-container-core-group-is-layout-21d4e958 wp-block-group-is-layout-flex">
-<p class="has-text-align-center has-small-font-size">
-					<strong>Francesca Piovani</strong>
-				</p>
-
-
-
-<p class="has-text-align-center has-small-font-size">Founder, CEO &amp; Architect</p>
-</div>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-
-
-<div class="wp-block-group is-vertical is-content-justification-center is-nowrap is-layout-flex wp-container-core-group-is-layout-63bfd6c1 wp-block-group-is-layout-flex">
-<p class="has-text-align-center has-small-font-size">
-					<strong>Rhye Moore</strong>
-				</p>
-
-
-
-<p class="has-text-align-center has-small-font-size">Engineering Manager</p>
-</div>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-
-
-<div class="wp-block-group is-vertical is-content-justification-center is-nowrap is-layout-flex wp-container-core-group-is-layout-63bfd6c1 wp-block-group-is-layout-flex">
-<p class="has-text-align-center has-small-font-size">
-					<strong>Helga Steiner</strong>
-				</p>
-
-
-
-<p class="has-text-align-center has-small-font-size">Architect</p>
-</div>
-</div>
-
-
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-
-
-<div class="wp-block-group is-vertical is-content-justification-center is-nowrap is-layout-flex wp-container-core-group-is-layout-21d4e958 wp-block-group-is-layout-flex">
-<p class="has-text-align-center has-small-font-size">
-					<strong>Ivan Lawrence</strong>
-				</p>
-
-
-
-<p class="has-text-align-center has-small-font-size">Project Manager</p>
-</div>
-</div>
-</div>
-</div>
-
-
-
-<div class="wp-block-group alignfull is-layout-constrained wp-container-core-group-is-layout-d89aad35 wp-block-group-is-layout-constrained" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
-<div class="wp-block-group alignwide has-base-2-background-color has-background is-layout-flow wp-block-group-is-layout-flow" style="border-radius:16px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
-<p class="has-text-align-center">We’ve worked with some of the best companies.</p>
-
-
-
-<div style="height:var(--wp--preset--spacing--10)" aria-hidden="true" class="wp-block-spacer"></div>
-
-
-
-<div class="wp-block-group alignwide is-content-justification-center is-layout-flex wp-container-core-group-is-layout-f95ffa09 wp-block-group-is-layout-flex" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
-
-
-
-
-
-
-
-</div>
-</div>
-</div>
-
-
-
-<div class="wp-block-group alignfull has-base-color has-contrast-background-color has-text-color has-background has-link-color wp-elements-101a04cdb3b42d663bcc7a6d349413a7 is-layout-constrained wp-container-core-group-is-layout-d89aad35 wp-block-group-is-layout-constrained" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
-<h2 class="wp-block-heading alignwide has-base-color has-text-color has-link-color wp-elements-c9b5699bdecff18878afa112249018b5" style="font-size:10rem;letter-spacing:-0.02em">FAQs</h2>
-
-
-
-<div class="wp-block-group alignwide is-layout-flow wp-block-group-is-layout-flow">
-<hr class="wp-block-separator has-text-color has-base-color has-alpha-channel-opacity has-base-background-color has-background is-style-wide" style="margin-top:var(--wp--preset--spacing--30);margin-bottom:var(--wp--preset--spacing--30)"/>
-
-
-
-<h3 class="wp-block-heading alignwide has-base-2-color has-text-color has-link-color wp-elements-aaab986b024c2d4977bb000716db54d9">What is your process working in smaller projects?</h3>
-
-
-
-<p class="has-contrast-1-color has-text-color has-link-color wp-elements-c7a6a2949ec955eb29254d2d7fb719b9">Études offers comprehensive consulting, management, design, and research solutions. Our vision is to be at the forefront of architectural innovation, fostering a global community of architects and enthusiasts united by a passion for creating spaces. Every architectural endeavor is an opportunity to shape the future.</p>
-
-
-
-<hr class="wp-block-separator has-text-color has-base-color has-alpha-channel-opacity has-base-background-color has-background is-style-wide" style="margin-top:var(--wp--preset--spacing--30);margin-bottom:var(--wp--preset--spacing--30)"/>
-
-
-
-<h3 class="wp-block-heading alignwide has-base-2-color has-text-color has-link-color wp-elements-6841db075a14f0d13730a94476d47523">Who is behind Études?</h3>
-
-
-
-<p class="has-contrast-1-color has-text-color has-link-color wp-elements-c7a6a2949ec955eb29254d2d7fb719b9">Études offers comprehensive consulting, management, design, and research solutions. Our vision is to be at the forefront of architectural innovation, fostering a global community of architects and enthusiasts united by a passion for creating spaces. Every architectural endeavor is an opportunity to shape the future.</p>
-
-
-
-<hr class="wp-block-separator has-text-color has-base-color has-alpha-channel-opacity has-base-background-color has-background is-style-wide" style="margin-top:var(--wp--preset--spacing--30);margin-bottom:var(--wp--preset--spacing--30)"/>
-
-
-
-<h3 class="wp-block-heading alignwide has-base-2-color has-text-color has-link-color wp-elements-39ea32c6355da907b8471851adc98695">I&#8217;d like to get to meet fellow architects, how can I do that?</h3>
-
-
-
-<p class="has-contrast-1-color has-text-color has-link-color wp-elements-c7a6a2949ec955eb29254d2d7fb719b9">Études offers comprehensive consulting, management, design, and research solutions. Our vision is to be at the forefront of architectural innovation, fostering a global community of architects and enthusiasts united by a passion for creating spaces. Every architectural endeavor is an opportunity to shape the future.</p>
-
-
-
-<hr class="wp-block-separator has-text-color has-base-color has-alpha-channel-opacity has-base-background-color has-background is-style-wide" style="margin-top:var(--wp--preset--spacing--30);margin-bottom:var(--wp--preset--spacing--30)"/>
-
-
-
-<h3 class="wp-block-heading alignwide has-base-2-color has-text-color has-link-color wp-elements-78f520ac6cd959b539da8bed9b65b7a2">Can I apply to be a part of the team or work as a contractor?</h3>
-
-
-
-<p class="has-contrast-1-color has-text-color has-link-color wp-elements-c7a6a2949ec955eb29254d2d7fb719b9">Études offers comprehensive consulting, management, design, and research solutions. Our vision is to be at the forefront of architectural innovation, fostering a global community of architects and enthusiasts united by a passion for creating spaces. Every architectural endeavor is an opportunity to shape the future.</p>
-
-
-
-<div style="margin-top:var(--wp--preset--spacing--10);margin-bottom:0;height:var(--wp--preset--spacing--10)" aria-hidden="true" class="wp-block-spacer"></div>
-</div>
-</div>
-
-
-
-<div class="wp-block-group alignfull is-layout-constrained wp-container-core-group-is-layout-d89aad35 wp-block-group-is-layout-constrained" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
-<div class="wp-block-columns alignwide are-vertically-aligned-center is-layout-flex wp-container-core-columns-is-layout-47c06fe3 wp-block-columns-is-layout-flex">
-<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:50%">
-<h2 class="wp-block-heading">Enhance your architectural journey with the Études Architect app.</h2>
-
-
-
-<ul style="line-height:1.75" class="wp-block-list is-style-checkmark-list">
-<li>Collaborate with fellow architects.</li>
-
-
-
-<li>Showcase your projects.</li>
-
-
-
-<li>Experience the world of architecture.</li>
-</ul>
-
-
-
-<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Download app</a></div>
-
-
-
-<div class="wp-block-button is-style-outline is-style-outline--4"><a class="wp-block-button__link wp-element-button">How it works</a></div>
-</div>
-</div>
-
-
-
-<div class="wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:50%">
-<figure class="wp-block-image size-full is-style-rounded"><img decoding="async" src="http://responsible-it.local/wp-content/themes/twentytwentyfour/assets/images/abstract-geometric-art.webp" alt="White abstract geometric artwork from Dresden, Germany" style="aspect-ratio:4/3;object-fit:cover"/></figure>
-</div>
-</div>
-</div>
-
-        </section>
+      <a href="/" class="link--logo" aria-label="naar de homepage">
+        <svg
+          class="logo--hva-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 246.207 29.653"
+        >
+          <use xlink:href="images/logo-nl.svg#logo"></use>
+        </svg>
+      </a>
     </main>
 
     <script src="scripts/general--helpers.js"></script>
     <script defer src="scripts/landmark--header.js"></script>
     <script defer src="scripts/landmark--header__accessibility.js"></script>
-    <script defer src="scripts/landmark--triangles.js"></script>
-    <script>window.gtranslateSettings = {"default_language":"nl","languages":["nl","en"],"wrapper_selector":".gtranslate_wrapper"}</script>
-    <script src="https://cdn.gtranslate.net/widgets/latest/fc.js" defer></script>
+    <script>
+      window.gtranslateSettings = {
+        default_language: "nl",
+        languages: ["nl", "en"],
+        wrapper_selector: ".gtranslate_wrapper",
+      };
+    </script>
+    <script
+      src="https://cdn.gtranslate.net/widgets/latest/fc.js"
+      defer
+    ></script>
   </body>
 </html>
